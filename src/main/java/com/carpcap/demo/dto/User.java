@@ -1,7 +1,7 @@
-package com.kwon.demo.dto;
+package com.carpcap.demo.dto;
 
-import com.kwon.validatorplus.annotation.*;
-import com.kwon.validatorplus.groups.PostGroup;
+import com.carpcap.validatorplus.annotation.*;
+import com.carpcap.validatorplus.groups.PostGroup;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.groups.Default;
@@ -11,7 +11,7 @@ import java.util.Date;
  * @author Kwon
  */
 public class User {
-    @NotBlank(groups = PostGroup.class,message = "不能为空")
+    @NotBlank(groups = PostGroup.class,message = "名字不能为空")
     private String name;
     private Integer age;
     private Integer sex;
