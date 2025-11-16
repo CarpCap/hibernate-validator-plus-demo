@@ -1,7 +1,8 @@
 package com.carpcap.demo.dto;
 
-import com.carpcap.validatorplus.annotation.*;
-import com.carpcap.validatorplus.groups.PostGroup;
+import com.carpcap.hvp.annotation.*;
+import com.carpcap.hvp.groups.CPost;
+
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.groups.Default;
@@ -11,27 +12,27 @@ import java.util.Date;
  * @author Kwon
  */
 public class User {
-    @NotBlank(groups = PostGroup.class,message = "名字不能为空")
+    @NotBlank(groups = CPost.class,message = "名字不能为空")
     private String name;
     private Integer age;
     private Integer sex;
-    @IDate(groups = PostGroup.class,message = "时间错误d1",min = "202204",max = "202206")
+    @CDateRange(groups = CPost.class,message = "时间错误d1",min = "20220401",max = "20220601")
     private Date d1;
-    @IDate (groups = {PostGroup.class, Default.class}, message = "日期需要大于等于202204 小于等于202206",min = "202204",max = "202206")
+    @CDateRange (groups = {CPost.class, Default.class}, message = "日期需要大于等于202204 小于等于202206",min = "202204",max = "202206")
     private String d2;
-    @IPhone(groups = PostGroup.class)
+    @CPhone
     private String phone;
-    @IIpAddress(groups = PostGroup.class)
+    @CIpv4(groups = CPost.class)
     private String ip;
-    @IDomain(groups = PostGroup.class)
+    @CDomain(groups = CPost.class)
     private String domain;
 
-    @IIdCard
+    @CIdCard
     private String idCard;
 
-    @IAccount
+    @CAccount
     private String user;
-    @IPassword
+    @CPassword
     private String passwd;
 
     public String getUser() {
