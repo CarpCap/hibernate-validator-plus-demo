@@ -30,7 +30,7 @@ public class User {
     @CIdCard
     private String idCard;
 
-    @CAccount
+    @CAccount(max = 9)
     private String user;
     @CPassword
     private String passwd;

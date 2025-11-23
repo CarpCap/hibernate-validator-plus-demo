@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @author CarpCap
  */
@@ -14,7 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @RequestMapping("test")
-    public String test(@Validated(CPostDef.class) @RequestBody User user) {
-        return user.getUser();
+    public String test(@Validated(CPostDef.class) @RequestBody User user, HttpServletRequest request) {
+        String header = request.getHeader("Accept-Language");
+
+
+        System.out.println(header);
+
+
+        return "result: "+user.getUser();
     }
 }
