@@ -1,6 +1,7 @@
 package com.carpcap.demo.controller;
 
 import com.carpcap.demo.dto.User;
+import com.carpcap.hvp.groups.CGetDef;
 import com.carpcap.hvp.groups.CPostDef;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +23,17 @@ public class DemoController {
 
         System.out.println(header);
 
-
         return "result: "+user.getUser();
+    }
+
+
+    @RequestMapping("testget")
+    public String testget(@Validated(CGetDef.class) @RequestBody User user, HttpServletRequest request) {
+        String header = request.getHeader("Accept-Language");
+
+
+        System.out.println(header);
+
+        return "result get : "+user.getUser();
     }
 }

@@ -1,11 +1,14 @@
 package com.carpcap.demo.dto;
 
 import com.carpcap.hvp.annotation.*;
+import com.carpcap.hvp.groups.CGet;
 import com.carpcap.hvp.groups.CPost;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.groups.Default;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -16,9 +19,10 @@ public class User {
     private String name;
     private Integer age;
     private Integer sex;
-    @CDateRange(groups = CPost.class,message = "时间错误d1",min = "20220401",max = "20220601")
+    @CDateRange(groups = CPost.class,min = "2022-04-01",max = "2022-06-01",allowNull = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date d1;
-    @CDateRange (groups = {CPost.class, Default.class}, message = "日期需要大于等于202204 小于等于202206",min = "202204",max = "202206")
+    @CDateRange (groups = {CPost.class, Default.class},min = "2023-04-01",max = "2023-06-01")
     private String d2;
     @CPhone
     private String phone;
@@ -30,10 +34,70 @@ public class User {
     @CIdCard
     private String idCard;
 
-    @CAccount(max = 9)
+    @CAccount(max = 9,allowNull = false)
     private String user;
     @CPassword
     private String passwd;
+
+
+    @CBankCard(groups = CGet.class,allowNull = false)
+    private String bankCard;
+
+
+    @CMoney(groups = CGet.class,decimalPlaces=3)
+    private String moneyStr;
+
+    @CMoney(groups = CGet.class)
+    private Integer moneyInt;
+
+
+    @CMoney(groups = CGet.class,allowNull = false)
+    private BigDecimal moneyBig;
+
+
+    @CMacAddress(groups = CGet.class,allowNull = false)
+    private String mac;
+
+
+    public String getBankCard() {
+        return bankCard;
+    }
+
+    public void setBankCard(String bankCard) {
+        this.bankCard = bankCard;
+    }
+
+    public String getMoneyStr() {
+        return moneyStr;
+    }
+
+    public void setMoneyStr(String moneyStr) {
+        this.moneyStr = moneyStr;
+    }
+
+    public Integer getMoneyInt() {
+        return moneyInt;
+    }
+
+    public void setMoneyInt(Integer moneyInt) {
+        this.moneyInt = moneyInt;
+    }
+
+    public BigDecimal getMoneyBig() {
+        return moneyBig;
+    }
+
+    public void setMoneyBig(BigDecimal moneyBig) {
+        this.moneyBig = moneyBig;
+    }
+
+    public String getMac() {
+        return mac;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
 
     public String getUser() {
         return user;
