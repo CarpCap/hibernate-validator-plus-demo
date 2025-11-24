@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
         if (bindingResult.hasErrors()) {
             for (FieldError fieldError : bindingResult.getFieldErrors()) {
                 //该格式仅仅作为response展示和log作用，前端应自己做校验
-                stringBuffer.append(fieldError.getField() + "--" + fieldError.getDefaultMessage() + " ");
+                stringBuffer.append(fieldError.getField() + "--" + fieldError.getDefaultMessage() + " \n");
             }
         }
         return stringBuffer.toString();
