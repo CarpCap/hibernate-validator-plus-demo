@@ -23,6 +23,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public String validExceptionHandler(HttpServletResponse response, MethodArgumentNotValidException ex) {
+        System.out.println("MethodArgumentNotValidException");
         BindingResult bindingResult = ex.getBindingResult();
         StringBuffer stringBuffer = new StringBuffer();
         if (bindingResult.hasErrors()) {
@@ -37,6 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ValidationException.class)
     public String validExceptionHandler2(HttpServletResponse response, ValidationException ex) {
         String message = ex.getMessage();
+        System.out.println("经过ValidationException全局拦截器");
         return message;
     }
 
