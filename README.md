@@ -1,9 +1,9 @@
 start cmd
 ```
-mvn clean package
-java -jar ...........
+mvn spring-boot:run
 
 or
 
-mvn spring-boot:run
+mvn clean package
+java -jar ...........
 ```
