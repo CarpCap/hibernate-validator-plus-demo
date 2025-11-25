@@ -20,25 +20,19 @@ public class DemoController {
     @Autowired
     private DemoService demoService;
 
-    @RequestMapping("test")
-    public String test(@Validated(CPostDef.class) @RequestBody User user, HttpServletRequest request) {
+    @RequestMapping("testPostDef")
+    public String testPostDef(@Validated(CPostDef.class) @RequestBody User user, HttpServletRequest request) {
         String header = request.getHeader("Accept-Language");
-
-
-        System.out.println(header);
-
-        return "result post : "+user.getUser();
+        System.out.println("Language:"+header);
+        return "success testPostDef : "+user.getUser();
     }
 
 
-    @RequestMapping("testGet")
-    public String testGet(@Validated(CGetDef.class) @RequestBody User user, HttpServletRequest request) {
+    @RequestMapping("testGetDef")
+    public String testGetDef(@Validated(CGetDef.class) @RequestBody User user, HttpServletRequest request) {
         String header = request.getHeader("Accept-Language");
-
-
-        System.out.println(header);
-
-        return "result get : "+user.getUser();
+        System.out.println("Language:"+header);
+        return "success testGetDef : "+user.getUser();
     }
 
 
@@ -48,6 +42,6 @@ public class DemoController {
 
 
 
-        return demoService.test(phone);
+        return "success test "+demoService.test(phone);
     }
 }
