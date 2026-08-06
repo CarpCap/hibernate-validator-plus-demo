@@ -1,12 +1,9 @@
 package com.carpcap.demo.common;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletResponse;
@@ -21,25 +18,26 @@ import javax.validation.ValidationException;
 public class GlobalExceptionHandler {
 
 
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public String validExceptionHandler(HttpServletResponse response, MethodArgumentNotValidException ex) {
-        System.out.println("MethodArgumentNotValidException");
-        BindingResult bindingResult = ex.getBindingResult();
-        StringBuffer stringBuffer = new StringBuffer();
-        if (bindingResult.hasErrors()) {
-            for (FieldError fieldError : bindingResult.getFieldErrors()) {
-                //该格式仅仅作为response展示和log作用，前端应自己做校验
-                stringBuffer.append(fieldError.getField() + "--" + fieldError.getDefaultMessage() + " \n");
-            }
+    public String handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        StringBuilder message = new StringBuilder();
+        for (FieldError fieldError : ex.getBindingResult().getFieldErrors()) {
+            message.append(fieldError.getField())
+                    .append("--")
+                    .append(fieldError.getDefaultMessage())
+                    .append("\n");
         }
-        return stringBuffer.toString();
+        return message.toString();
     }
 
+
+    /**
+     * ValidationException
+     */
     @ExceptionHandler(ValidationException.class)
-    public String validExceptionHandler2(HttpServletResponse response, ValidationException ex) {
-        String message = ex.getMessage();
-        System.out.println("经过ValidationException全局拦截器");
-        return message;
+    public String handleValidationException(ValidationException ex) {
+        return ex.getMessage();
     }
 
 
