@@ -3,10 +3,10 @@ package com.carpcap.demo.controller;
 import com.carpcap.demo.dto.User;
 import com.carpcap.hvp.groups.CGetDef;
 import com.carpcap.hvp.groups.CPostDef;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/user")

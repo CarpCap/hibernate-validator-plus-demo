@@ -6,8 +6,8 @@ import com.carpcap.hvp.groups.CPost;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.groups.Default;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.groups.Default;
 import java.math.BigDecimal;
 import java.util.Date;
 

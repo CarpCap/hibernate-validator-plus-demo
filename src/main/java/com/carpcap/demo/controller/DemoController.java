@@ -5,14 +5,15 @@ import com.carpcap.demo.service.DemoService;
 import com.carpcap.hvp.groups.CGetDef;
 import com.carpcap.hvp.groups.CPostDef;
 import com.carpcap.hvp.utils.CValid;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Validator;
+import jakarta.validation.Validator;
 
 /**
  * @author CarpCap
@@ -44,7 +45,7 @@ public class DemoController {
 
 
     @RequestMapping("testService")
-    public String testService(String phone, HttpServletRequest request) {
+    public String testService(@RequestParam("phone") String phone, HttpServletRequest request) {
 
 
         return "success test " + demoService.test(phone);
